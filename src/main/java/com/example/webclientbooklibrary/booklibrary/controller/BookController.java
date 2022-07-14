@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/")
 public class BookController {
 
     BookService bookService;
@@ -13,4 +13,6 @@ public class BookController {
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
+
+
 }
