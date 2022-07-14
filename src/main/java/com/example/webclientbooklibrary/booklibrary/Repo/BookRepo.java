@@ -23,20 +23,7 @@ public class BookRepo {
         return books;
     }
 
-    public Book getBook(String isbn){
-       Book book= books.stream().filter(e->e.isbn()==isbn).findFirst().get();
-       if (book==null){
-          throw new NoSuchElementException("Book with the ISBN= " + isbn +"not exists");
-       }
-/*
-      List<Book> newBooks= books.stream().filter(e->e.isbn()==isbn).collect(Collectors.toList());
-       if(newBooks.size() !=1){
-           throw new IllegalStateException("Expected exactly one Book but got " + newBooks.size());
-       }
-       Book newBook=newBooks.get(0);
-*/
-        return book;
-    }
+
 
 
 
