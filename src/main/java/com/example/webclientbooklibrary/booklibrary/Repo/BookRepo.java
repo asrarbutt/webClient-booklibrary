@@ -7,8 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
+
 
 @Repository
 public class BookRepo {
@@ -32,8 +31,8 @@ public class BookRepo {
     }
 
 
-
-
-
-
+    public Book addBook(Book newBook) {
+        books.add(newBook);
+        return newBook;
+    }
 }

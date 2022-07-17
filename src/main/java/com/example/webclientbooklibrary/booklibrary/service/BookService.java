@@ -13,11 +13,11 @@ import java.util.Objects;
 public class BookService {
 
     BookRepo bookRepo;
-    List<Book> bookList;
+   // List<Book> bookList;
 
     public BookService(BookRepo bookRepo) {
         this.bookRepo = bookRepo;
-        this.bookList=new ArrayList<>(this.bookRepo.getBooks());
+        //this.bookList=new ArrayList<>(this.bookRepo.getBooks());
     }
 
 
@@ -28,7 +28,7 @@ public class BookService {
 
     public Book getBook(String isbn){
 
-        Book book= bookList.stream().filter(e-> Objects.equals(e.isbn(), isbn)).findFirst().get();
+        Book book= bookRepo.getBooks().stream().filter(e-> Objects.equals(e.getIsbn(), isbn)).findFirst().get();
         if (book==null){
             throw new NoSuchElementException("Book with the ISBN= " + isbn +"not exists");
         }
@@ -46,25 +46,34 @@ public class BookService {
         if (book==null){
             throw new NoSuchElementException("Book with the ISBN= " + isbn +"not exists");
         }
-        bookList.remove(book);
+        bookRepo.getBooks().remove(book);
+        List<Book> list=bookRepo.getBooks();
 
-        return bookList;
+        return list;
     }
 
-    /*
+
     public Book updateBook(Book book, String isbn){
 
-        bookList.stream().filter(e-> {
-            if (e.isbn().equals(isbn)){
+     Book book1=  bookRepo.getBooks().stream().filter(e-> {
+            if (e.getIsbn().equals(isbn)){
+                e.setTitle(book.getTitle());
+                e.setBookType(book.getBookType());
+                e.setAutor(book.getAutor());
 
             }
-        })
+            return true;
 
+        }).findAny().get();
+return book1;
     }
-     */
 
 
+    public Book addBook(Book newBook) {
+        return bookRepo.addBook(newBook);
+    }
 
-
-
+    public Book addBookById(String isbn, Book book) {
+       return bookRepo.addBook(book);
+    }
 }

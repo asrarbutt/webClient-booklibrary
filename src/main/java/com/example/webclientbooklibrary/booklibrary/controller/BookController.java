@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("book")
 public class BookController {
 
     private WebClient webClient=WebClient
@@ -21,24 +21,44 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("books")
+    @GetMapping()
     public List<Book> getBooks(){
         return bookService.getBooks();
+
     }
 
-    @GetMapping(path = "books/{isbn}")
+    @GetMapping(path = "{isbn}")
     public Book getBook(@PathVariable String isbn){
 
         return bookService.getBook(isbn);
     }
+
+    @PostMapping
+    public Book addBook(@RequestBody Book newBook){
+        System.out.println("haha    " +newBook);
+       return bookService.addBook(newBook);
+
+
+    }
+
+
 
     @DeleteMapping(path = "books/{isbn}")
     public List<Book> deleteBook(@PathVariable String isbn){
         return bookService.deleteBook(isbn);
     }
 
+    @PutMapping("{isbn}")
+    public Book addBookById(@PathVariable String isbn, @RequestBody Book book){
+     return    bookService.addBookById(isbn, book);
+
+
+    }
+
+
 
     //Bonus
+/*
 
     @GetMapping(path = "/books/{isbn}")
     public void getFlorianBook(@PathVariable String isbn){
@@ -52,4 +72,6 @@ public class BookController {
         System.out.println(response);
 
     }
+
+ */
 }
