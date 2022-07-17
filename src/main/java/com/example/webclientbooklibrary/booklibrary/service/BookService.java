@@ -42,7 +42,7 @@ public class BookService {
         return book;
     }
     public List<Book> deleteBook(String isbn){
-       Book book= bookRepo.getBooks().stream().filter(e-> Objects.equals(e.isbn(), isbn)).findFirst().get();
+       Book book= bookRepo.getBooks().stream().filter(e-> Objects.equals(e.getIsbn(), isbn)).findFirst().get();
         if (book==null){
             throw new NoSuchElementException("Book with the ISBN= " + isbn +"not exists");
         }
@@ -50,4 +50,21 @@ public class BookService {
 
         return bookList;
     }
+
+    /*
+    public Book updateBook(Book book, String isbn){
+
+        bookList.stream().filter(e-> {
+            if (e.isbn().equals(isbn)){
+
+            }
+        })
+
+    }
+     */
+
+
+
+
+
 }

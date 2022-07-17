@@ -13,8 +13,16 @@ import java.util.stream.Collectors;
 @Repository
 public class BookRepo {
 
-   private final List<Book> books=new ArrayList<>(Arrays.asList(
-            new Book("Java", "Peter", "1", BookType.E_BOOK))
+   private final List<Book> books=new ArrayList<>(
+           Arrays.asList(
+           new Book("Java", "Müller", "1", BookType.E_BOOK),
+                   new Book("Javascript", "Wali", "1", BookType.AUDIO_BOOK)
+
+
+           )
+
+
+
     );
 
 
